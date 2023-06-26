@@ -17,20 +17,5 @@ spec:
     targetPort: amqp
   selector:
     app: rabbitmq
-  type: ClusterIP
+  type: loadBalancer
 ---
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  labels:
-    app: rabbitmq
-  name: rabbitmq
-spec:
-  rules:
-  - host: <LB-URL>
-    http:
-      paths:
-      - backend:
-          serviceName: rabbitmq
-          servicePort: 15672
-        path: /
